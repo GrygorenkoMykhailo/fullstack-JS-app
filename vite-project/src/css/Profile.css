@@ -1,31 +1,17 @@
 
-#root,body{
-    display: block;
+#root, body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     margin: 0;
     padding: 0;
 }
 
-header{
-    width: 100%;
-    background-color: purple;
-}
-
 header div{
     display: flex;
-    padding: 1.5em 3em 1.5em 3em;
-    width: 80%;
-    justify-self: right;
-}
-
-header div p{
-    
+    flex-direction: row;
 }
 
 .todo-container{
-    display: flex;
-    padding: 3em;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: center;
-    overflow: auto;
+    width: 33%;
 }

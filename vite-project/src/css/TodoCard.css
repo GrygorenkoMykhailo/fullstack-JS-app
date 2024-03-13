@@ -1,7 +1,27 @@
 .todo-card{
-    width: 10em;
-    height: 10em;
-    flex-basis: 45%;
     border: 1px solid red;
-    padding: 1em;
+    overflow-wrap: break-word;
+    padding: 2em;
+}
+
+.todo-card p{
+    text-wrap: balance;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    border: 1px solid blue;
+    padding: .7em;
+}
+
+header div{
+    margin-right: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid green;
+    width: 15%;
 }
