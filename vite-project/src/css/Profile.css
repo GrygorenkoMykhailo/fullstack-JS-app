@@ -15,3 +15,26 @@ header div{
 .todo-container{
     width: 33%;
 }
+
+header{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    border: 1px solid blue;
+    padding: .7em;
+    box-sizing: border-box;
+}
+
+header div{
+    margin-right: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid green;
+    width: 15%;
+}
+
+.creation-element-reserve-space{
+    height: 27%;
+}

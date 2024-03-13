@@ -33,3 +33,13 @@ Todo.init({
 },{sequelize, name: 'Todos', timestamps: false, });
 
 module.exports.TodoModel = Todo
+
+module.exports.AddTodo = async(title,description,creationDate, expiringDate, userId) => {
+    await Todo.create({
+        Title: title,
+        Description: description,
+        CreationDate: creationDate,
+        ExpiringDate: expiringDate,
+        UserId: userId,
+    })
+}

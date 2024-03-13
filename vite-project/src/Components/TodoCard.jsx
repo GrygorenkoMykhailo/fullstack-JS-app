@@ -1,17 +1,18 @@
 import '../css/TodoCard.css'
 
-function TodoCard(props){
+function TodoCard({todo}){
     return (
         <div className="todo-card">
-            <p>Title: {props.props.Title}</p>
-            <p>Description: {props.props.Description}</p>
-            <p>CreationDate: {parseDate(props.props.CreationDate)}</p>
-            <p>ExpiringDate: {parseDate(props.props.ExpiringDate)}</p>
+            <p>Title: {todo.Title}</p>
+            <p>Description: {todo.Description}</p>
+            <p>CreationDate: {parseDate(todo.CreationDate)}</p>
+            <p>ExpiringDate: {parseDate(todo.ExpiringDate)}</p>
         </div>
     )
 }
 
 function parseDate(date){
+
     const newDate = new Date(date);
 
     const month = newDate.getMonth() > 10 ? newDate.getMonth() : '0' + newDate.getMonth()

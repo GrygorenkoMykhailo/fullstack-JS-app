@@ -8,20 +8,4 @@
     text-wrap: balance;
 }
 
-header{
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    border: 1px solid blue;
-    padding: .7em;
-}
 
-header div{
-    margin-right: 10%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border: 1px solid green;
-    width: 15%;
-}
