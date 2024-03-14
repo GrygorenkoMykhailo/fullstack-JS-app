@@ -11,9 +11,9 @@ module.exports.register_post = async (req,res) => {
             res.status(409).send();
         } else{
             bcrypt.genSalt(saltRounds, (err, salt) => {
-                bcrypt.hash(password, salt, (err, hash) => {
-                    UserModel.addUser(username,email,salt,hash);
-                    res.status(200).send();
+                bcrypt.hash(password, salt, async (err, hash) => {
+                    const id = await UserModel.addUser(username,email,salt,hash);
+                    res.status(302).json({id: id});
                 })
             })
         }

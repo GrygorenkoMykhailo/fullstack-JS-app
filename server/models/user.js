@@ -38,12 +38,13 @@ module.exports.getUserWithTodos = async function(id) {
 }
 
 module.exports.addUser = async function(username,email,salt,hash){
-    User.create({
+    const user = await User.create({
         Username: username,
         Email: email,
         Salt: salt,
         HashedPassword: hash,
     })
+    return user.Id;
 }
 
 module.exports.userExists = async function(email){

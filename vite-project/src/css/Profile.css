@@ -13,7 +13,7 @@ header div{
 }
 
 .todo-container{
-    width: 33%;
+    width: 42%;
 }
 
 header{
@@ -37,4 +37,8 @@ header div{
 
 .creation-element-reserve-space{
     height: 27%;
+}
+
+.inner-wrapper{
+    display: flex;
 }

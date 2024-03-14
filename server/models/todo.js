@@ -43,3 +43,25 @@ module.exports.AddTodo = async(title,description,creationDate, expiringDate, use
         UserId: userId,
     })
 }
+
+module.exports.UpdateTodo = async (id,title,description,expiringDate) => {
+    console.log('id = ' +  id, 't = ' +  title, 'd = ' + description, 'e = ' + expiringDate);
+
+    await Todo.update({
+        Title: title,
+        Description: description,
+        ExpiringDate: expiringDate,
+    },{
+        where: {
+            Id: id,
+        },
+    },)
+}
+
+module.exports.DeleteTodo = async(id) => {
+    await Todo.destroy({
+        where: {
+            Id: id
+        }
+    })
+}

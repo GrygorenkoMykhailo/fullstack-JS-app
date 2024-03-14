@@ -1,8 +1,10 @@
 import { useState } from "react"
 import '../css/Register.css'
+import { useNavigate } from "react-router-dom";
 
 function Register(){
 
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -30,7 +32,8 @@ function Register(){
         setFormData({...formData, [e.target.name]: e.target.value});
     }
 
-    function handleSubmit(){
+    function handleSubmit(e){
+        e.preventDefault();
         fetch('/api/register', {
             method: 'POST',
             headers: {
@@ -41,6 +44,13 @@ function Register(){
                 email: formData.email,
                 password: formData.password,
             })
+        })
+        .then(response => {
+            if(response.status === 302) return response.json();
+            else console.log('ploxo');
+        })
+        .then(data => {
+            navigate('/profile/' + data.id)
         })
     }
 }

@@ -28,3 +28,25 @@ module.exports.post_user_todo = async(req,res) => {
         res.status(500).json({error: e.message});
     }
 }
+
+module.exports.update_user_todo = async(req,res) => {
+    const {id, title, description, expiringDate} = req.body;
+
+    try{
+        await TodoModel.UpdateTodo(id,title,description,expiringDate);
+        res.status(200).send();
+    }catch(e){
+        res.status(500).json({error: e.message});
+    }
+}
+
+module.exports.delete_user_todo = async(req,res) => {
+    const {id} = req.params;
+
+    try{
+        await TodoModel.DeleteTodo(id);
+        res.status(200).json();
+    }catch(e){
+        res.status(500).json({error: e.message});
+    }
+}

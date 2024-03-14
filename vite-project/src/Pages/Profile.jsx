@@ -22,10 +22,6 @@ function Profile() {
         });
     },[]);
 
-    useEffect(() => {
-        console.log(user);
-    },[user])
-
     if (user === null) {
         return (
             <>
@@ -53,7 +49,6 @@ function Profile() {
             ...prevUser,
             Todos: [...prevUser.Todos, todo]
         }));
-        console.log('after adding', user);
     }
 }
 
