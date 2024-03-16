@@ -2,7 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from './Pages/LandingPage'
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-import Profile from "./Pages/Profile";
+import { Profile, profileLoaderFunction } from "./Pages/Profile";
+
+import ProfileErrorBoundary from "./ErrorBoundaries/ProfileErrorBoundary";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +22,8 @@ const router = createBrowserRouter([
     {
         path: '/profile/:id',
         element: <Profile/>,
+        ErrorBoundary: ProfileErrorBoundary,
+        loader: async({params}) => profileLoaderFunction(params),
     },
 ])
 
