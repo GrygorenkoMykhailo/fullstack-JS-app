@@ -1,58 +1,51 @@
 import { useState } from "react"
 import '../css/Register.css'
-import { useNavigate } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 
 function Register(){
-
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-  });
-
     return(
         <div className="register-wrapper">
-            <form onSubmit={handleSubmit}>
+            <Form action="/register" method="POST">
                 <label>Username: </label>
-                <input type="text" name="username" onChange={handleChange}/>
+                <input type="text" name="username"/>
                 <label>Email: </label>
-                <input type="text" name="email"onChange={handleChange}/>
+                <input type="text" name="email"/>
                 <label>Password: </label>
-                <input type="text" name="password" onChange={handleChange}/>
+                <input type="text" name="password"/>
                 <label>Confirm password: </label>
-                <input type="text" name="confirmPassword" onChange={handleChange}/>
+                <input type="text" name="confirmPassword"/>
                 <button type="submit">Submit</button>
-            </form>
+            </Form>
         </div>
     )
+}
 
-    function handleChange(e) {
-        setFormData({...formData, [e.target.name]: e.target.value});
-    }
+async function registerAction({request}){
+    const formData = await request.formData();
 
-    function handleSubmit(e){
-        e.preventDefault();
-        fetch('/api/register', {
+    if(request.method === 'POST'){
+        const user = {
+            username: formData.get('username'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+        }
+
+        let response = await fetch('/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                username: formData.username,
-                email: formData.email,
-                password: formData.password,
-            })
+            body: JSON.stringify(user),
         })
-        .then(response => {
-            if(response.status === 302) return response.json();
-            else console.log('ploxo');
-        })
-        .then(data => {
-            navigate('/profile/' + data.id)
-        })
+        
+        let data = await response.json();
+
+        if(response.status === 302){
+            return redirect('/profile/'+ data.id);
+        }else{
+            return response.status;
+        }    
     }
 }
 
-export default Register
+export { Register,registerAction }
